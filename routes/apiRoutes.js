@@ -113,6 +113,14 @@ app.post("/api/messagePost", function(req, res) {
   });
 });
 
+app.post("/api/addTanda", function(req, res) {
+  db.tanda.create(req.body).then(function(dbExample) {
+    res.json(dbExample);
+    
+  });
+});
+
+
 app.post("/api/registerUser", function(req, res) {
   db.users.findOne({ where: { email: req.body.email } }).then(project =>{
     if (project == null) {

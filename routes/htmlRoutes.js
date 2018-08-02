@@ -40,12 +40,12 @@ module.exports = function(app) {
   });
 
   app.get("/tanda", function(req, res) {
-    db.wall.findAll({order: [
+    db.tanda.findAll({order: [
       // Will escape title and validate DESC against a list of valid direction parameters
-      ['id', 'DESC']]}).then(function(messages) {
-      console.log((messages));
+      ['id', 'DESC']]}).then(function(tandas) {
+      console.log(tandas);
       res.render("tanda", {
-        examples: messages
+        examples: tandas
         
       });
       
