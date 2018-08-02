@@ -13,7 +13,7 @@ module.exports = function (app) {
       res.sendStatus(403);
     }
   }, (req, res, next) => {
-    console.log(req.token);
+    // console.log(req.token);
     jwt.verify(req.token, 'secretkey', (err, authData) => {
       if (err) {
         res.sendStatus(403);
@@ -51,7 +51,9 @@ module.exports = function (app) {
         if (req.body.password == project.password) {
           jwt.sign({ user }, 'secretkey', { expiresIn: '3600s' }, (err, token) => {
             res.json({
-              token
+              token: token,
+              id: user.id,
+              name: user.username
 
             });
 
@@ -63,7 +65,7 @@ module.exports = function (app) {
         }
       }
     })
-    console.log(JSON.stringify(req.body));
+    // console.log(JSON.stringify(req.body));
 
   });
 
@@ -107,7 +109,7 @@ module.exports = function (app) {
 app.post("/api/messagePost", function(req, res) {
   db.wall.create(req.body).then(function(dbExample) {
     res.json(dbExample);
-    res.mensaje("AGREGADO");
+    
   });
 });
 

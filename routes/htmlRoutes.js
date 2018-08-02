@@ -33,6 +33,20 @@ module.exports = function(app) {
       console.log((messages));
       res.render("wall", {
         examples: messages
+        
+      });
+      
+    });
+  });
+
+  app.get("/tanda", function(req, res) {
+    db.wall.findAll({order: [
+      // Will escape title and validate DESC against a list of valid direction parameters
+      ['id', 'DESC']]}).then(function(messages) {
+      console.log((messages));
+      res.render("tanda", {
+        examples: messages
+        
       });
       
     });
